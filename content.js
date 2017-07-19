@@ -37,7 +37,6 @@ function httpGetAsync(theUrl, callback)
 /* Main functionality was done this way to be able to wait for onload event  */
 window.onload = function(){
     rows = document.getElementsByClassName("track-row");
-    rows = Array.prototype.slice.call(rows, 0);
 
     for(var i = 0;i < rows.length; i++) {
         var button = document.createElement("button");

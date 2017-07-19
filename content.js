@@ -1,11 +1,11 @@
+/* Click event for the download buttons */
 function click(event) {
-    
     var trackID = event.srcElement.parentNode.getAttribute("id");
     trackID = String.prototype.replace.call(trackID, "track-", "");
     httpGetAsync("http://www.livephish.com/bigriver/subPlayer.aspx?HLS=1&callback=angular.callbacks._9&trackID=" + trackID, download);
-
 }
 
+/* parses the response text, and downloads the file */
 function download(responseText)
 {
     var dlLink = String.prototype.substring.call(responseText, 36);
@@ -21,12 +21,10 @@ function download(responseText)
     delete link;
 }
 
+/* Gets the page which contains our download link */
 function httpGetAsync(theUrl, callback)
 {
     var xmlHttp = new XMLHttpRequest();
-
-  
-
     xmlHttp.onreadystatechange = function() { 
         if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
             callback(xmlHttp.responseText);
@@ -36,8 +34,8 @@ function httpGetAsync(theUrl, callback)
     xmlHttp.send(null);
 }
 
-function main()
-{
+/* Main functionality was done this way to be able to wait for onload event  */
+window.onload = function(){
     rows = document.getElementsByClassName("track-row");
     rows = Array.prototype.slice.call(rows, 0);
 
@@ -51,9 +49,4 @@ function main()
         rows[i].insertBefore(button, rows[i].childNodes[0]);
         button.addEventListener('click', click);
     }   
-}
-
-
-window.onload = function(){
-    main();
 };

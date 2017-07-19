@@ -1,0 +1,20 @@
+{
+  "manifest_version": 2,
+  "name": "LivePhish Downloader",
+  "version": "0.1",
+  "author": "Chumba",
+  "description": "Adds download buttons to the LivePhish+ webapp",
+  "content_scripts": [
+    {
+      "matches": [
+          "https://plus.livephish.com/*", 
+          "http://plus.livephish.com/*"
+      ],
+      "js": ["content.js"]
+    }
+  ],
+  "permissions": [
+    "cookies",
+    "http://www.livephish.com/*"
+  ]
+} 
